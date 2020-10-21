@@ -4,17 +4,25 @@ class Note {
   color c;
   float speedY = 10;
   
-  Note(float x, float y, color c){
-    this.x = x;
-    this.y = y;
-    this.c = c;
+  Note(int fretNumber) {
+    x = fretNumber * 100;
+    y = -200;
+    
+    switch (fretNumber) { //Sets the color
+      case 1:
+        c = color(0, 255, 0);
+        break;
+      case 2:
+        c = color(255, 0, 0);
+        break;
+      case 3:
+        c = color(255, 255, 0);
+        break;
+    }
+    
   }
-  
   void update(){
     y = y + speedY;
-    if (y > 800) {
-      y = -600;
-    }
   }
   void show(){
     fill(c);

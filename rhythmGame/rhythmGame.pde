@@ -6,37 +6,37 @@ Fret red;
 Fret yellow;
 
 ArrayList<Note> notes = new ArrayList<Note>();
+
 void setup() {
   background(0);
   size(400,800);
-  green = new Fret(100, color(38, 204, 16));
-  red = new Fret(200, color(255, 0, 19));
-  yellow = new Fret(300, color(255, 227, 15));
-  
-  
-  greenNotes[0] = new Note(100, -1600, color(38, 204, 16));
-  greenNotes[1] = new Note(100, -1200, color(38, 204, 16));
-  greenNotes[2] = new Note(100, -800, color(38, 204, 16));
-  greenNotes[3] = new Note(100, -400, color(38, 204, 16));
-  greenNotes[4] = new Note(100, 0, color(38, 204, 16));
-  
-  
 }
 void draw() {
   background(0);
 
-  if (frameCount % speed == 0) {
-    n.push(new Note(floor(random(1, 5))));
+  if (frameCount % speed == 0) { //Sets a rhythm and speed, when we implement music this will change
+    notes.add(new Note(floor(random(1, 3))));
+  }
+  for (int i = 0; i < notes.size(); i ++) {
+    notes.get(i).update();
+    notes.get(i).show();
+    if (notes.get(i).y > 800) {
+      notes.remove(i);
+    }
   }
 }
 
 void keyPressed() {
   if (key == 'a') {
-      checkDistance("Green");
+      checkDistance(1);
+   }
+   if (key == 's') {
+      checkDistance(2);
+   }
+   if (key == 'd') {
+      checkDistance(3);
    }
 }
-void checkDistance(String c) {
-  if (c == "Green") {
-    
-  }
+void checkDistance(int fretNumber) {
+  println();
 }
