@@ -1,10 +1,11 @@
 int size = 5;
 int index = 0;
+int speed = 50;
 Fret green;
 Fret red;
 Fret yellow;
 
-Note[] greenNotes = new Note[size];
+ArrayList<Note> notes = new ArrayList<Note>();
 void setup() {
   background(0);
   size(400,800);
@@ -23,32 +24,19 @@ void setup() {
 }
 void draw() {
   background(0);
-  green.show();
-  red.show();
-  yellow.show();
-  for (int i = 0; i < size; i ++) {
-    index = i;
-    greenNotes[i].show();
-    greenNotes[i].update();
+
+  if (frameCount % speed == 0) {
+    n.push(new Note(floor(random(1, 5))));
   }
 }
 
 void keyPressed() {
   if (key == 'a') {
-      float greenDistance = dist(greenNotes[index].x, greenNotes[index].y, green.x, green.y);
-      if (greenDistance < 30) {
-        println("perfect!");
-      }
-      else if (greenDistance < 40) {
-        println("great!");
-      }
-      else if (greenDistance < 50) {
-        println("good!");
-      }
-      else if (greenDistance < 60) {
-        println("ok!");
-      } else {
-        println("miss!");
-      }
+      checkDistance("Green");
    }
+}
+void checkDistance(String c) {
+  if (c == "Green") {
+    
+  }
 }
