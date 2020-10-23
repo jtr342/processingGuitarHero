@@ -18,10 +18,10 @@ class Fret {
         c = color(255, 255, 0);
         break;
       case 4:
-        c = color(255, 140,0);
+        c = color(0, 0, 255);
         break;
       case 5:
-        c = color(0, 0, 255);
+        c = color(255, 140,0);
         break;
     }
   }

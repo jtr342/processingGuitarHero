@@ -1,4 +1,14 @@
-int speed = 20;
+import ddf.minim.*;
+import ddf.minim.signals.*;
+Minim minim;
+AudioPlayer mySound;
+
+int bpm = 103; //Found this using an online tool
+int speed = 3600 / bpm; // There are 60 frames per second, and 3600 frames per minute
+float left;
+float right;
+float middle;
+
 
 Fret green;
 Fret red;
@@ -16,14 +26,35 @@ void setup() {
   yellow = new Fret(3);
   blue = new Fret(4);
   orange = new Fret(5);
+  println("bpm: " + bpm + "speed: " + speed);
+  
+  minim = new Minim(this);
+  mySound = minim.loadFile("lily.mp3");    
+  mySound.play();
 }
 
 void draw() {
   background(0);
-
+   /*
+   IDEAS:
+   get the range of our sound, and it should be mapped 1-6. The louder sounds will hit the orange fret.
+   Alternatively, we go left, right and middle channels. 
+   going to try idea 1 first.
+  
+  */
+  for (int i = 0; i < mySound.bufferSize() - 1; i++) {
+    left = mySound.left.get(i);
+    right = mySound.right.get(i);
+    middle = mySound.mix.get(i);
+  }
+  
   if (frameCount % speed == 0) { //Sets a rhythm and speed, when we implement music this will change
-    int fretNumber = floor(random(1, 6));
-    notes.add(new Note(fretNumber));
+    if (left > .1) 
+      notes.add(new Note(1));
+    if (middle > .1) 
+      notes.add(new Note(2));
+    if (right > .1) 
+      notes.add(new Note(3));
   }
   for (int i = 0; i < notes.size(); i ++) {
     notes.get(i).update();
