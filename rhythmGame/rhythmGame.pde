@@ -9,7 +9,6 @@ float left;
 float right;
 float middle;
 
-
 Fret green;
 Fret red;
 Fret yellow;
@@ -55,6 +54,10 @@ void draw() {
       notes.add(new Note(2));
     if (right > .1) 
       notes.add(new Note(3));
+    if (right < -.1)
+      notes.add(new Note(4));
+    if (left < -.1)
+      notes.add(new Note(5));
   }
   for (int i = 0; i < notes.size(); i ++) {
     notes.get(i).update();
